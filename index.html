@@ -3,293 +3,573 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ibisinella.edit | Portafolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>ibisinella.edit - Servicio de Edición de Video Profesional</title>
     
-    <style>
-        :root {
-            --fondo: #000000;
-            --violeta: #a020f0;
-            --violeta-brillante: #d896ff;
-            --blanco: #ffffff;
-            --borde-pixel: 4px;
-        }
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Servicio de Edición de Video Profesional por ibisinella.edit. Cofres de edición a tu medida con resultados premium, diseño de miniaturas, flyers y portadas.">
+    <meta name="keywords" content="edicion de video, filmora, canva, cofres de edicion, reels, tiktok, shorts, miniaturas, creador de contenido, ibisinella">
+    <meta name="author" content="ibisinella.edit">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ibisinella.edit - Servicio de Edición de Video">
+    <meta property="og:description" content="Recrea tu contenido. Edición dinámica, subtítulos, efectos de sonido y estilo único. ¡Inserta una moneda para iniciar!">
+    <meta property="og:image" content="Gemini_Generated_Image_kcmcfrkcmcfrkcmc-removebg-preview.png">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--fondo);
-            color: var(--blanco);
-            font-family: 'Press Start 2P', cursive;
-            display: flex;
-            justify-content: center;
-            padding: 10px;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* --- EFECTO SCANLINES (TELE VIEJA) - BAJAMOS OPACIDAD PARA LEER MEJOR --- */
-        body::before {
-            content: " ";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 4px, 3px 100%;
-            z-index: 100;
-            pointer-events: none;
-        }
-
-        /* --- COMPUTADORA DE FONDO --- */
-        .pc-background {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background-image: url('Gemini_Generated_Image_kcmcfrkcmcfrkcmc-removebg-preview.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.18; 
-            animation: floatingBackground 12s ease-in-out infinite;
-        }
-
-        @keyframes floatingBackground {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* --- PUNTOS VIOLETAS --- */
-        .bg-pixels {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .pixel-star {
-            position: absolute;
-            width: 4px; height: 4px;
-            background: var(--violeta);
-            opacity: 0.4;
-            animation: floatPixels 8s infinite linear;
-        }
-
-        @keyframes floatPixels {
-            from { transform: translateY(105vh); }
-            to { transform: translateY(-10vh); }
-        }
-
-        .container {
-            max-width: 500px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 35px;
-            z-index: 10;
-        }
-
-        /* --- CABECERA --- */
-        .header-title {
-            text-align: center;
-            border: var(--borde-pixel) solid var(--blanco);
-            padding: 15px;
-            margin-top: 20px;
-            box-shadow: 6px 6px 0px var(--violeta);
-            background: rgba(0,0,0,0.85);
-        }
-
-        .header-title h1 { font-size: 0.8rem; color: var(--violeta-brillante); }
-
-        /* --- PERSONAJE Y LOGOS --- */
-        .hero-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 100px; /* Más espacio para el globo */
-        }
-
-        .character-and-logos-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            gap: 10px;
-        }
-
-        /* --- AJUSTE DE LOGOS PARA QUE NO SE SALGAN --- */
-.tool-logo {
-    width: 50px; /* Los achicamos un poquito más para que entren bien */
-    image-rendering: pixelated;
-    position: relative;
-    z-index: 5;
-}
-
-        .canva-logo { transform: translateX(5px); }
-        .filmora-logo { transform: translateX(5px); }
-
-        .character-wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .avatar {
-            width: 300px; 
-            image-rendering: pixelated;
-            animation: saludo 2s ease-in-out infinite;
-        }
-
-        /* GLOBITO - MEJORADO */
-        .speech-bubble {
-            background: var(--blanco);
-            color: #000;
-            padding: 20px 10px;
-            font-size: 0.6rem; /* Más grande */
-            border: 3px solid var(--violeta);
-            position: absolute;
-            top: -100px; 
-            right: -10px;
-            width: 210px;
-            text-align: center;
-            box-shadow: 4px 4px 0px var(--violeta);
-            z-index: 20;
-            line-height: 1.5;
-            letter-spacing: 1px;
-        }
-
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 25px;
-            border-width: 12px 12px 0 0;
-            border-style: solid;
-            border-color: var(--violeta) transparent transparent transparent;
-        }
-
-        /* --- CUADRO DE TEXTO - MEJORADO PARA LEER --- */
-        .info-box {
-            border: var(--borde-pixel) solid var(--violeta);
-            padding: 25px;
-            background: rgba(5, 5, 5, 0.95);
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .info-box p { 
-            font-size: 0.8rem; /* Tamaño optimizado */
-            line-height: 1.8; 
-            color: var(--blanco);
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 0px #000;
-        }
-
-        /* --- BOTONES --- */
-        .btn-drive {
-            display: block;
-            text-decoration: none;
-            background-color: #111;
-            color: var(--blanco);
-            border: var(--borde-pixel) solid var(--blanco);
-            padding: 25px 15px;
-            text-align: center;
-            font-size: 0.7rem;
-            box-shadow: 6px 6px 0px var(--violeta);
-            animation: pulseButton 3s infinite ease-in-out;
-        }
-
-        .btn-secundario {
-            display: block;
-            text-decoration: none;
-            background-color: #000;
-            color: var(--blanco);
-            border: var(--borde-pixel) solid var(--blanco);
-            padding: 15px;
-            text-align: center;
-            font-size: 0.6rem;
-            box-shadow: 5px 5px 0px #555;
-            margin-top: 10px;
-        }
-
-        @keyframes pulseButton { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
-
-        /* --- FOOTER --- */
-        .footer {
-            border: var(--borde-pixel) solid var(--blanco);
-            padding: 20px;
-            margin-top: 20px;
-            margin-bottom: 50px;
-            background: rgba(0,0,0,0.9);
-            text-align: center;
-        }
-
-        .footer p {
-            font-size: 0.75rem; /* Más grande */
-            line-height: 2.2;
-            color: var(--blanco);
-            letter-spacing: 1px;
-        }
-
-        @keyframes saludo { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(3deg) translateY(-5px); } }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- CSS Custom stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="pc-background"></div>
+    <!-- CRT Screen Effect Overlay -->
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
 
-    <div class="bg-pixels">
-        <div class="pixel-star" style="left: 15%; animation-delay: 1s;"></div>
-        <div class="pixel-star" style="left: 45%; animation-delay: 3s;"></div>
-        <div class="pixel-star" style="left: 75%; animation-delay: 0s;"></div>
-    </div>
-
-    <div class="container">
-        <header class="header-title">
-            <h1>ibisinella.edit</h1>
-        </header>
-
-        <section class="hero-container">
-            <div class="character-and-logos-wrapper">
-                <img src="pixel_art_large (1).png" alt="Canva" class="tool-logo canva-logo">
-                
-                <div class="character-wrapper">
-                    <div class="speech-bubble">BIENVENIDO A MI PORTAFOLIO</div>
-                    <img src="personaje.png" alt="Nacho" class="avatar">
+    <!-- 1. SECCIÓN DE BIENVENIDA (BOOT SCREEN / INSERT COIN) -->
+    <section id="boot-screen" class="boot-screen">
+        <div class="boot-container">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">ibisinella.sys v1.0.0</span>
+            </div>
+            <div class="terminal-body">
+                <div class="boot-text-lines">
+                    <p class="boot-line">> CARGANDO RECURSOS DEL SISTEMA...</p>
+                    <p class="boot-line">> INICIALIZANDO MOTOR GRÁFICO (FILMORA)...</p>
+                    <p class="boot-line">> DETECTANDO SISTEMA DE DISEÑO (CANVA)...</p>
+                    <p class="boot-line">> ESTADO: <span class="text-glow-green">LISTO</span></p>
                 </div>
                 
-                <img src="pixel_art_large.png" alt="Filmora" class="tool-logo filmora-logo">
+                <div class="arcade-cabinet-frame">
+                    <img src="Gemini_Generated_Image_kcmcfrkcmcfrkcmc-removebg-preview.png" alt="Retro Arcade Computer" class="retro-computer-img">
+                    <div class="arcade-screen-content">
+                        <span class="arcade-brand">ibisinella.edit</span>
+                        <span class="arcade-subtitle">SERVICIO DE EDICIÓN DE VIDEO</span>
+                    </div>
+                </div>
+
+                <div class="insert-coin-wrapper">
+                    <button id="insert-coin-btn" class="arcade-btn pulse-glow">
+                        <span class="btn-pixel-text">INSERT COIN TO START</span>
+                    </button>
+                    <p class="insert-coin-sub">CLIC PARA INICIAR PORTAFOLIO</p>
+                </div>
             </div>
-            
-            <div class="info-box">
-                <p>
-                    ¿Buscás que tu contenido destaque? <br><br>
-                    ¡Hola! Soy Ignacio Bisinella, editor de video especializado en transformar ideas en contenido de alto impacto que atrapa a la audiencia y hace que tu marca sobresalga en cualquier red social <span style="color: var(--violeta-brillante);">aplicando mi experiencia en Filmora y Canva</span>. <br><br>
-                    Me enfoco en desarrollar piezas dinamicas, profesionales y 100% adaptadas a lo que tu proyecto necesita para romper el scroll.
-                </p>
+        </div>
+    </section>
+
+    <!-- MAIN APP CONTENT (Hidden initially, shown after coin insert) -->
+    <div id="app-content" class="app-content hidden">
+        
+        <!-- HEADER / NAVIGATION -->
+        <header class="main-header">
+            <div class="header-container">
+                <a href="#inicio" class="logo">
+                    <span class="logo-accent">&lt;</span>ibisinella.edit<span class="logo-accent">/&gt;</span>
+                </a>
+                <nav class="nav-menu" id="nav-menu">
+                    <ul>
+                        <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                        <li><a href="#diseno" class="nav-link">Diseño</a></li>
+                        <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
+                        <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+                        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    </ul>
+                </nav>
+                <div class="header-cta">
+                    <a href="#contacto" class="btn-outline-glow">Cotizar Ahora</a>
+                </div>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Abrir menú">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- 2. HERO SECTION -->
+        <section id="inicio" class="hero-section section-padding scroll-reveal">
+            <div class="container hero-grid">
+                <div class="hero-text-content">
+                    <div class="badge-gaming">🕹️ SISTEMA ACTIVO</div>
+                    <h1 class="hero-title">
+                        <span class="title-top">ibisinella.edit</span>
+                        <span class="title-bottom glow-text-purple">SERVICIO DE EDICIÓN DE VIDEO</span>
+                    </h1>
+                    <p class="hero-desc">
+                        Lleva tu contenido al siguiente nivel visual. Ediciones dinámicas, transiciones avanzadas, retención optimizada y subtítulos modernos que capturan la atención de tu audiencia de principio a fin.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#servicios" class="btn-primary-glow">Ver Cofres</a>
+                        <a href="#portafolio" class="btn-secondary">Explorar Portafolio</a>
+                    </div>
+                </div>
+                <div class="hero-graphics">
+                    <div class="crt-frame-wrapper">
+                        <div class="crt-glow-frame">
+                            <div class="hero-graphics-container">
+                                <img src="Gemini_Generated_Image_kcmcfrkcmcfrkcmc-removebg-preview.png" alt="Retro computer workspace" class="computer-base">
+                                <img src="personaje.png" alt="ibisinella avatar waving" class="avatar-pixelated floating">
+                            </div>
+                            <div class="live-status-tag">
+                                <span class="ping-dot"></span>
+                                <span class="status-label">EN LÍNEA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <div class="portafolio-section" style="display: flex; flex-direction: column; gap: 15px;">
-            <a href="https://drive.google.com/drive/folders/18iZY_nImfS2vHquvbk1VzDOsQjI04bCB?usp=drive_link" target="_blank" class="btn-drive">
-                📁 PORTAFOLIO COMPLETO
-            </a>
-            <a href="https://wa.me/543405417242?text=Hola%20Ignacio,%20vi%20tu%20portafolio" target="_blank" class="btn-secundario">
-                📱 CONTACTO DIRECTO
-            </a>
-            <a href="https://www.instagram.com/reel/DZu0egbz5k0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="btn-secundario">
-                🎬 VER REELS RECIENTES
-            </a>
-        </div>
+        <!-- 3. SECCIÓN LÍNEA DE VIDEO (TARIFAS Y SERVICIOS) -->
+        <section id="servicios" class="services-section section-padding scroll-reveal">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="title-icon">⚔️</span> LÍNEA DE VIDEO <span class="title-icon">⚔️</span></h2>
+                    <p class="section-subtitle">Elige el cofre que mejor se adapte a tu nivel y presupuesto. Tarifas transparentes y profesionales.</p>
+                </div>
+                
+                <div class="cofres-grid">
+                    
+                    <!-- COFRE NEGRO -->
+                    <div class="cofre-card cofre-negro">
+                        <div class="cofre-border-glow"></div>
+                        <div class="cofre-header">
+                            <div class="cofre-badge">Básico</div>
+                            <h3 class="cofre-title">Cofre Negro</h3>
+                            <div class="cofre-price">$15.000 <span class="price-currency">ARS</span></div>
+                        </div>
+                        <div class="cofre-body">
+                            <ul class="cofre-features">
+                                <li>
+                                    <svg class="feature-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Cortes, transiciones normales
+                                </li>
+                                <li>
+                                    <svg class="feature-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Música de fondo sin copyright
+                                </li>
+                                <li>
+                                    <svg class="feature-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Retoque básico de imagen
+                                </li>
+                                <li>
+                                    <svg class="feature-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Subtítulos normales
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cofre-footer">
+                            <a href="https://wa.me/5493405417242?text=Hola!%20Estuve%20viendo%20tu%20web%20y%20quer%C3%ADa%20consultar%20por%20los%20precios%20y%20detalles%20de%20los%20cofres%20de%20edici%C3%B3n" target="_blank" rel="noopener" class="btn-cofre-action">Obtener Cofre</a>
+                        </div>
+                    </div>
 
-        <footer class="footer">
-    <p style="word-wrap: break-word; overflow-wrap: break-word; width: 100%; max-width: 250px; margin: 0 auto;">
-        📧 ibisinella.edit@gmail.com
-    </p>
-    <p>📱 +54 3405417242</p>
-</footer>
+                    <!-- COFRE VIOLETA (RECOMENDADO) -->
+                    <div class="cofre-card cofre-violeta featured">
+                        <div class="cofre-border-glow"></div>
+                        <div class="popular-tag">RECOMENDADO</div>
+                        <div class="cofre-header">
+                            <div class="cofre-badge glow-bg-purple">Avanzado</div>
+                            <h3 class="cofre-title glow-text-purple">Cofre Violeta</h3>
+                            <div class="cofre-price">$25.000 <span class="price-currency">ARS</span></div>
+                        </div>
+                        <div class="cofre-body">
+                            <ul class="cofre-features">
+                                <li>
+                                    <svg class="feature-icon active-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Música elegida por el cliente
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Subtítulos dinámicos
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Cortes acelerados
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Efectos de sonido
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Zooms
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Transiciones avanzadas
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Filtros HD
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cofre-footer">
+                            <a href="https://wa.me/5493405417242?text=Hola!%20Estuve%20viendo%20tu%20web%20y%20quer%C3%ADa%20consultar%20por%20los%20precios%20y%20detalles%20de%20los%20cofres%20de%20edici%C3%B3n" target="_blank" rel="noopener" class="btn-cofre-action glow-btn-purple">Adquirir Cofre</a>
+                        </div>
+                    </div>
+
+                    <!-- COFRE LEGENDARIO -->
+                    <div class="cofre-card cofre-legendario">
+                        <div class="cofre-border-glow"></div>
+                        <div class="cofre-header">
+                            <div class="cofre-badge gold-bg">Elite</div>
+                            <h3 class="cofre-title gold-text">Cofre Legendario</h3>
+                            <div class="cofre-price">Base $45.000+ <span class="price-currency">ARS</span></div>
+                            <div class="price-sub">A medida / personalizado</div>
+                        </div>
+                        <div class="cofre-body">
+                            <ul class="cofre-features">
+                                <li>
+                                    <svg class="feature-icon active-icon-gold" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Diseño sonoro completo
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon-gold" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Subtítulos con estilo personalizado
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon-gold" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Rastreo de movimiento
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon-gold" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Animaciones
+                                </li>
+                                <li>
+                                    <svg class="feature-icon active-icon-gold" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                    Corrección de color pro
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cofre-footer">
+                            <a href="https://wa.me/5493405417242?text=Hola!%20Estuve%20viendo%20tu%20web%20y%20quer%C3%ADa%20consultar%20por%20los%20precios%20y%20detalles%20de%20los%20cofres%20de%20edici%C3%B3n" target="_blank" rel="noopener" class="btn-cofre-action gold-border-btn">Solicitar a Medida</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- OTROS SERVICIOS -->
+                <div class="section-header text-center additional-services-header">
+                    <h2 class="section-title"><span class="title-icon">👾</span> OTROS SERVICIOS <span class="title-icon">👾</span></h2>
+                    <p class="section-subtitle">Soluciones profesionales para potenciar tu marca, tus redes sociales y tu presencia digital.</p>
+                </div>
+
+                <div class="adicionales-grid">
+                    <!-- EDICION DE VIDEO -->
+                    <div class="service-card card-edicion">
+                        <div class="service-border-glow"></div>
+                        <div class="service-header">
+                            <span class="service-icon">🎬</span>
+                            <h3 class="service-title">Edición de Video</h3>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-desc">Servicio de edición a medida para proyectos específicos: documentales, vlogs, cursos online, anuncios publicitarios y Reels de alta retención.</p>
+                        </div>
+                        <div class="service-footer">
+                            <a href="https://wa.me/5493405417242?text=Hola!%20Vi%20tu%20portafolio%20y%20me%20interesa%20consultar%20por%20el%20servicio%20de%20edici%C3%B3n%20de%20video%20para%20un%20proyecto" target="_blank" rel="noopener" class="btn-service-action">Consultar Servicio</a>
+                        </div>
+                    </div>
+
+                    <!-- COMMUNITY MANAGER -->
+                    <div class="service-card card-community">
+                        <div class="service-border-glow"></div>
+                        <div class="service-header">
+                            <span class="service-icon">📱</span>
+                            <h3 class="service-title">Community Manager</h3>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-desc">Gestión integral de tus redes sociales. Planificación de contenido, optimización de perfiles, diseño de flyers, interacción y crecimiento estratégico de tu comunidad.</p>
+                        </div>
+                        <div class="service-footer">
+                            <a href="https://wa.me/5493405417242?text=Hola!%20Qu%C3%A9%20tal%3F%20Quer%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Community%20Manager%20para%20potenciar%20mis%20redes" target="_blank" rel="noopener" class="btn-service-action">Consultar Servicio</a>
+                        </div>
+                    </div>
+
+                    <!-- DESARROLLO WEB -->
+                    <div class="service-card card-web">
+                        <div class="service-border-glow"></div>
+                        <div class="service-header">
+                            <span class="service-icon">💻</span>
+                            <h3 class="service-title">Desarrollo Web</h3>
+                        </div>
+                        <div class="service-body">
+                            <p class="service-desc">Creación de páginas web y landing pages profesionales a medida. Diseño responsivo (adaptado a celulares), optimización SEO, velocidad de carga premium y alta conversión.</p>
+                        </div>
+                        <div class="service-footer">
+                            <a href="https://wa.me/5493405417242?text=Hola!%20Estuve%20viendo%20tus%20trabajos%20y%20me%20gustar%C3%ADa%20cotizar%20el%20servicio%20de%20creaci%C3%B3n%20de%20p%C3%A1ginas%20web" target="_blank" rel="noopener" class="btn-service-action">Consultar Servicio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SECCIÓN LÍNEA DE DISEÑO (COMPLEMENTOS) -->
+        <section id="diseno" class="design-section section-padding scroll-reveal">
+            <div class="container design-grid">
+                <div class="design-graphics">
+                    <div class="glass-canva-card">
+                        <div class="canva-glow-effect"></div>
+                        <img src="pixel_art_large (1).png" alt="Canva" class="canva-logo">
+                        <div class="canva-mockup-screen">
+                            <div class="mockup-bar">
+                                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                                <span class="mockup-title">canva_workspace.psd</span>
+                            </div>
+                            <div class="mockup-canvas">
+                                <div class="mockup-preview-box">
+                                    <span class="mockup-preview-text">MINIATURA COMPUESTA</span>
+                                    <div class="mockup-preview-video-link">
+                                        <span class="chain-icon">🔗</span>
+                                        <span>MISMA IDENTIDAD VISUAL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="design-text-content">
+                    <div class="badge-design">🎨 COMPLEMENTOS DE MARCA</div>
+                    <h2 class="design-title">MINIATURAS, FLYERS, PORTADAS</h2>
+                    <p class="design-desc">
+                        Diseños llamativos hechos en Canva. Todo se hace para que el video y la miniatura "hablen" el mismo idioma visual. Captura el primer clic y asegura que tus piezas gráficas tengan la misma energía y calidad que el contenido editado.
+                    </p>
+                    <div class="design-features-list">
+                        <div class="design-feat-item">
+                            <div class="feat-bullet">⚡</div>
+                            <div><strong>Impacto Visual:</strong> Diseños optimizados para maximizar el CTR (Click-Through Rate).</div>
+                        </div>
+                        <div class="design-feat-item">
+                            <div class="feat-bullet">⚡</div>
+                            <div><strong>Cohesión de Marca:</strong> Colores, fuentes y estilos que unifican tu feed.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SECCIÓN CARACTERÍSTICAS Y BENEFICIOS REALES -->
+        <section id="beneficios" class="benefits-section section-padding scroll-reveal">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="title-icon">⚡</span> CUALIDADES & VALOR <span class="title-icon">⚡</span></h2>
+                    <p class="section-subtitle">Por qué trabajar conmigo y cómo transformamos la experiencia de tu audiencia.</p>
+                </div>
+                
+                <div class="features-benefits-wrapper">
+                    
+                    <!-- CARACTERÍSTICAS TÉCNICAS -->
+                    <div class="cb-column">
+                        <div class="cb-header">
+                            <span class="cb-icon">🛠️</span>
+                            <h3>Características Técnicas</h3>
+                        </div>
+                        <div class="cb-grid">
+                            
+                            <div class="cb-card tech-card">
+                                <img src="pixel_art_large.png" alt="Filmora Logo" class="tech-badge-img">
+                                <h4>Motor de Edición</h4>
+                                <p>Uso de <strong>Filmora</strong> para la edición, con renders dinámicos y transiciones precisas.</p>
+                            </div>
+                            
+                            <div class="cb-card tech-card">
+                                <div class="tech-icon-svg">💬</div>
+                                <h4>Subtítulos Profesionales</h4>
+                                <p>Subtítulos para no perderte nada del video, ideales para consumo rápido en redes.</p>
+                            </div>
+
+                            <div class="cb-card tech-card">
+                                <div class="tech-icon-svg">🔊</div>
+                                <h4>Audio Impecable</h4>
+                                <p>Limpieza de audio y ruido de fondo para una voz cristalina y con impacto.</p>
+                            </div>
+
+                            <div class="cb-card tech-card">
+                                <div class="tech-icon-svg">✨</div>
+                                <h4>Estética Exclusiva</h4>
+                                <p>Estética a elección única, adaptada al nicho y estilo del creador.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- BENEFICIOS REALES -->
+                    <div class="cb-column">
+                        <div class="cb-header">
+                            <span class="cb-icon">📈</span>
+                            <h3>Beneficios Reales</h3>
+                        </div>
+                        <div class="cb-grid">
+                            
+                            <div class="cb-card benefit-card">
+                                <div class="benefit-num">01</div>
+                                <h4>Tiempo</h4>
+                                <p><strong>Vos grabás, yo hago el resto.</strong> Optimiza tu flujo de trabajo sin lidiar con software pesado.</p>
+                            </div>
+
+                            <div class="cb-card benefit-card">
+                                <div class="benefit-num">02</div>
+                                <h4>Retención</h4>
+                                <p>Tu audiencia se queda hasta el final del video con dinámicas constantes y ritmo fluido.</p>
+                            </div>
+
+                            <div class="cb-card benefit-card">
+                                <div class="benefit-num">03</div>
+                                <h4>Autoridad</h4>
+                                <p>Dejás de parecer un principiante editando. Aumenta el valor percibido de tu marca personal.</p>
+                            </div>
+
+                            <div class="cb-card benefit-card">
+                                <div class="benefit-num">04</div>
+                                <h4>Identidad</h4>
+                                <p>Tenés un estilo que nadie más tiene, destacándote instantáneamente en la plataforma.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SECCIÓN DE PORTAFOLIO (DRIVE LINK) -->
+        <section id="portafolio" class="portfolio-section section-padding scroll-reveal">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title"><span class="title-icon">🎬</span> PORTAFOLIO <span class="title-icon">🎬</span></h2>
+                    <p class="section-subtitle">Explora mi portafolio completo con trabajos recientes organizados en alta definición.</p>
+                </div>
+
+                <div class="portfolio-drive-wrapper">
+                    <div class="portfolio-console-screen">
+                        <div class="console-header">
+                            <span class="console-dot red"></span>
+                            <span class="console-dot yellow"></span>
+                            <span class="console-dot green"></span>
+                            <span class="console-title">drive_viewer.exe</span>
+                        </div>
+                        <div class="console-body">
+                            <span class="console-icon">📂</span>
+                            <p class="console-text">Haz clic en el botón de abajo para acceder a mi espacio de almacenamiento en Google Drive, donde podrás ver todos mis reels, videos editados y proyectos creativos en su calidad original.</p>
+                            <a href="https://drive.google.com/drive/folders/18iZY_nImfS2vHquvbk1VzDOsQjI04bCB?usp=sharing" target="_blank" rel="noopener" class="btn-drive-pixel">Portafolio de videos en Google Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. SECCIÓN DE CONTACTO, TÉRMINOS Y REPOSITORIO -->
+        <section id="contacto" class="contact-section section-padding scroll-reveal">
+            <div class="container">
+                <div class="contact-card">
+                    <div class="contact-glow-ambient"></div>
+                    <div class="contact-grid">
+                        
+                        <div class="contact-info-panel">
+                            <span class="contact-badge">📞 HABLEMOS</span>
+                            <h2 class="contact-title">¿Listo para iniciar tu proyecto?</h2>
+                            <p class="contact-desc">
+                                Escríbeme y dinos qué servicio o cofre de edición tienes en mente para comenzar a trabajar hoy mismo.
+                            </p>
+                            
+                            <div class="availability-alert">
+                                <div class="status-indicator-bar">
+                                    <span id="availability-dot" class="status-dot"></span>
+                                    <span id="availability-text" class="status-label">Evaluando horario...</span>
+                                </div>
+                                <p class="availability-sub">Atención comercial: Lunes a Viernes. Fines de semana cerrado.</p>
+                            </div>
+
+                            <!-- HORARIOS COMERCIALES (PIXEL ART BOX) -->
+                            <div class="business-hours-box">
+                                <div class="hours-header">
+                                    <span class="hours-icon">⏰</span>
+                                    <h3 class="hours-title">HORARIOS DE ATENCIÓN</h3>
+                                </div>
+                                <div class="hours-content">
+                                    <div class="hours-row">
+                                        <span class="day-label">Lunes a Viernes</span>
+                                        <span class="time-label">08:30 a 13:00 hs.<br>17:30 a 21:00 hs.</span>
+                                    </div>
+                                    <div class="hours-row weekend">
+                                        <span class="day-label">Sábados y Domingos</span>
+                                        <span class="time-label">No disponible<br>(Fines de semana cerrado)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-action-panel">
+                            <span class="action-panel-title">Elige tu opción de contacto:</span>
+                            
+                            <div class="whatsapp-buttons-list">
+                                <a href="https://wa.me/5493405417242?text=Hola!%20Estuve%20viendo%20tu%20web%20y%20quer%C3%ADa%20consultar%20por%20los%20precios%20y%20detalles%20de%20los%20cofres%20de%20edici%C3%B3n" target="_blank" rel="noopener" class="btn-whatsapp-choice btn-wa-coffers">
+                                    <span class="choice-icon">📦</span>
+                                    <div class="choice-text">
+                                        <span class="choice-main">Precios de Cofres</span>
+                                        <span class="choice-sub">Consulta tarifas de packs de video</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://wa.me/5493405417242?text=Hola!%20Vi%20tu%20portafolio%20y%20me%20interesa%20consultar%20por%20el%20servicio%20de%20edici%C3%B3n%20de%20video%20para%20un%20proyecto" target="_blank" rel="noopener" class="btn-whatsapp-choice btn-wa-video">
+                                    <span class="choice-icon">🎬</span>
+                                    <div class="choice-text">
+                                        <span class="choice-main">Edición de Video</span>
+                                        <span class="choice-sub">Ediciones dinámicas a medida</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://wa.me/5493405417242?text=Hola!%20Qu%C3%A9%20tal%3F%20Quer%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Community%20Manager%20para%20potenciar%20mis%20redes" target="_blank" rel="noopener" class="btn-whatsapp-choice btn-wa-cm">
+                                    <span class="choice-icon">📱</span>
+                                    <div class="choice-text">
+                                        <span class="choice-main">Community Manager</span>
+                                        <span class="choice-sub">Impulsa e interactúa en tus redes</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://wa.me/5493405417242?text=Hola!%20Estuve%20viendo%20tus%20trabajos%20y%20me%20gustar%C3%ADa%20cotizar%20el%20servicio%20de%20creaci%C3%B3n%20de%20p%C3%A1ginas%20web" target="_blank" rel="noopener" class="btn-whatsapp-choice btn-wa-web">
+                                    <span class="choice-icon">💻</span>
+                                    <div class="choice-text">
+                                        <span class="choice-main">Desarrollo Web</span>
+                                        <span class="choice-sub">Creación de páginas a medida</span>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <p class="cta-terms-sub">Respuesta promedio en menos de 2 horas laborables</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- FOOTER -->
+                <footer class="footer-area">
+                    <div class="footer-brand">
+                        <span class="footer-logo">ibisinella.edit</span>
+                        <p class="footer-copy">© 2026. Todos los derechos reservados. Diseñado con pasión.</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com" target="_blank" rel="noopener" class="footer-github-link">
+                            <svg viewBox="0 0 24 24" width="20" height="20" class="github-svg"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                            GitHub Repository
+                        </a>
+                    </div>
+                </footer>
+            </div>
+        </section>
+
     </div>
 
+    <!-- JS Code link -->
+    <script src="app.js"></script>
 </body>
 </html>
