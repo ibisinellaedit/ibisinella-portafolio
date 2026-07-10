@@ -56,30 +56,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const insertCoinBtn = document.getElementById('insert-coin-btn');
     const appContent = document.getElementById('app-content');
     const bootContainer = document.querySelector('.boot-container');
+    const arcadeScreen = document.querySelector('.arcade-screen-content');
+    const arcadeCabinet = document.querySelector('.arcade-cabinet-frame');
+
+    const handleStartApp = () => {
+        // Play retro synthesized sound
+        playCoinSound();
+        
+        // Trigger CRT/Glitch effect on container
+        bootContainer.classList.add('boot-glitch');
+        
+        // Wait for sound and glitch to complete, then load main layout
+        setTimeout(() => {
+            bootScreen.classList.add('fade-out');
+            appContent.classList.remove('hidden');
+            
+            // Allow CSS transitions to execute
+            setTimeout(() => {
+                appContent.classList.add('visible');
+                document.body.style.overflow = '';
+                
+                // Trigger scroll reveals initially visible
+                handleScrollReveal();
+            }, 50);
+        }, 550);
+    };
 
     if (insertCoinBtn) {
-        insertCoinBtn.addEventListener('click', () => {
-            // Play retro synthesized sound
-            playCoinSound();
-            
-            // Trigger CRT/Glitch effect on container
-            bootContainer.classList.add('boot-glitch');
-            
-            // Wait for sound and glitch to complete, then load main layout
-            setTimeout(() => {
-                bootScreen.classList.add('fade-out');
-                appContent.classList.remove('hidden');
-                
-                // Allow CSS transitions to execute
-                setTimeout(() => {
-                    appContent.classList.add('visible');
-                    document.body.style.overflow = '';
-                    
-                    // Trigger scroll reveals initially visible
-                    handleScrollReveal();
-                }, 50);
-            }, 550);
-        });
+        insertCoinBtn.addEventListener('click', handleStartApp);
+    }
+    if (arcadeScreen) {
+        arcadeScreen.addEventListener('click', handleStartApp);
+    }
+    if (arcadeCabinet) {
+        arcadeCabinet.addEventListener('click', handleStartApp);
     }
 
     // 3. MOBILE MENU TOGGLE

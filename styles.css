@@ -201,6 +201,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .retro-computer-img {
@@ -224,6 +225,7 @@ body {
     border-radius: 4px;
     box-shadow: inset 0 0 15px rgba(157, 78, 221, 0.4);
     animation: crt-flicker 0.15s infinite;
+    cursor: pointer;
 }
 
 .arcade-brand {
@@ -817,6 +819,16 @@ body {
     filter: drop-shadow(0 0 3px var(--gold-primary));
 }
 
+.feature-icon.active-icon-blue {
+    color: #00f0ff;
+    filter: drop-shadow(0 0 3px #00b4d8);
+}
+
+.feature-icon.active-icon-red {
+    color: #ff6b6b;
+    filter: drop-shadow(0 0 3px #ff3333);
+}
+
 .cofre-footer {
     margin-top: auto;
 }
@@ -867,6 +879,53 @@ body {
     box-shadow: 0 0 20px var(--gold-primary);
     color: var(--bg-black);
     border-color: var(--gold-glow);
+}
+
+/* Custom Blue and Red Cofre Themes */
+.cofre-blue {
+    border-color: rgba(0, 180, 216, 0.2);
+}
+.cofre-blue:hover .cofre-border-glow {
+    border-color: #00b4d8;
+    box-shadow: inset 0 0 20px rgba(0, 180, 216, 0.15), 0 0 25px rgba(0, 180, 216, 0.25);
+}
+.blue-text {
+    color: #00f0ff !important;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+.glow-btn-blue {
+    border-color: #00b4d8 !important;
+    background-color: rgba(0, 180, 216, 0.15) !important;
+    color: #00f0ff !important;
+}
+.glow-btn-blue:hover {
+    background-color: #00b4d8 !important;
+    box-shadow: 0 0 20px #00b4d8 !important;
+    color: var(--text-white) !important;
+    border-color: #00f0ff !important;
+}
+
+.cofre-red {
+    border-color: rgba(255, 51, 51, 0.2);
+}
+.cofre-red:hover .cofre-border-glow {
+    border-color: #ff3333;
+    box-shadow: inset 0 0 20px rgba(255, 51, 51, 0.15), 0 0 25px rgba(255, 51, 51, 0.25);
+}
+.red-text {
+    color: #ff6b6b !important;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+.glow-btn-red {
+    border-color: #ff3333 !important;
+    background-color: rgba(255, 51, 51, 0.15) !important;
+    color: #ff6b6b !important;
+}
+.glow-btn-red:hover {
+    background-color: #ff3333 !important;
+    box-shadow: 0 0 20px #ff3333 !important;
+    color: var(--text-white) !important;
+    border-color: #ff6b6b !important;
 }
 
 /* 7. DESIGN (COMPLEMENTS) SECTION */
